@@ -95,6 +95,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
+        // Con lợn 35
         $user = User::find($id);
         $user->fill($request->all());
         if($request->hasFile('avatar')){
