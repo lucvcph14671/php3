@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Position;
+use App\Models\Product;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Room::factory(10)->create();
-        User::factory(100)->create();
-        Position::factory(10)->create();
+        // Room::factory(10)->create();
+        // User::factory(10)->create();
+        // Position::factory(10)->create();
+        Product::factory(10)->create();
 
     }
 }

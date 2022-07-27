@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [UserController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('delete');
+    });
+    Route::prefix('product')->name('product.')->group(function () {
+        Route::get('list', [ProductController::class, 'index'])->name('list');
+        Route::get('create', [ProductController::class, 'create'])->name('create');
+        Route::post('store', [ProductController::class, 'store'])->name('store');
+        Route::get('status/{id}', [ProductController::class, 'status'])->name('status');
+        Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('delete');
     });
 });
 

@@ -1,6 +1,8 @@
 @extends('adminMaster')
 @section('conten')
-    <form method="POST">
+    <form method="POST
+    
+    ">
         <label for="email_input" class="form-label">Name Product</label>
         <input type="text" class="form-control" id="email_input" name="name_input" placeholder="Enter Name..." aria-describedby="email_input_Help">
     </div>

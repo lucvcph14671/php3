@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
+use App\Http\Requests\UserUpdatearequest;
 
 class UserController extends Controller
 {
@@ -43,6 +44,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:6|max:32',
+            'email' => 'required|min:6|max:32|email',
+            'avatar' => 'file',
+            'birthday' => 'required|date',
+
+        ]);
+
+
        $user = new User();
        $user->fill($request->all());
        if($request->hasFile('avatar')){
@@ -86,6 +96,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function status($id)
+    {
+        
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -95,15 +110,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
-        // Con lợn 35
+
         $user = User::find($id);
         $user->fill($request->all());
         if($request->hasFile('avatar')){

@@ -1,6 +1,13 @@
 @extends('adminMaster')
 @section('title','form')
 @section('conten')
+
+  @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class="invalid-feedback">{{$error}}</div>
+      @endforeach
+  @endif
+
 <form class="row g-3 p-4" action="{{route('admin.user.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-md-6">
