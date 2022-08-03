@@ -11,8 +11,9 @@
                 <th>Email</th>
                 <th>IMG</th>
                 <th>Phone</th>
-                <th>Role</th>
+                <th>Quyền</th>
                 <th>Edit</th>
+                <th>cấp quyền</th>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +26,11 @@
                     <td><img src="{{asset($user->avatar)}}" alt="" width="100"></td>
                     <td>{{ $user->phone }}</td>
                     @if ($user->role === 0)
-                        <td class="btn btn-outline-danger">Khóa</td>
+                        <td class="btn btn-outline-danger">Thành viên</td>
                     @elseif ($user->role === 1)
-                        <td class="btn btn-outline-info">Mở</td>
+                        <td class="btn btn-outline-info">Admin</td>
                     @else
-                        <td class="btn btn-outline-warning">Tạm khóa</td>
+                        <td class="btn btn-outline-warning">CTV</td>
                     @endif
                     <td>
                         <a class="btn btn-success btn-sm rounded" href="{{route('admin.user.edit', $user->id)}}">Edit</a>
@@ -39,6 +40,15 @@
                             <button class="btn btn-danger btn-sm mt-2">delete</button>
                         </form>
                     </td>
+                    @if ($user->role === 1)
+                    <td >
+                        <a class="btn btn-outline-danger btn-sm mt-2" name="" href="{{route('admin.user.role', $user->id)}}">Cấp Thành viên</a>
+                        </td>
+                @elseif ($user->role === 0)
+                    <td>
+                        <a class="btn btn-outline-info btn-sm mt-2" name="st" href="{{route('admin.user.role', $user->id)}}"> Cấp Admin</a>
+                       </td>
+                @endif
                 </tr>
             @endforeach
         </tbody>

@@ -146,4 +146,23 @@ class UserController extends Controller
         }
         
     }
+
+    public function role($id)
+    {
+        $user = User::find($id);
+        if($user->role == 0){
+        
+            $user->role = 1;
+            $user->save();
+            return redirect()->back();
+
+        }
+        else if($user->role == 1){
+            
+            $user->role = 0;
+            $user->save();
+            return redirect()->back();
+        }
+        
+    }
 }

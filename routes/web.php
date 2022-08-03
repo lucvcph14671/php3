@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('list', [UserController::class, 'index'])->name('list');
         Route::get('create', [UserController::class, 'create'])->name('create');
@@ -25,6 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('edit');
         Route::put('update/{id}', [UserController::class, 'update'])->name('update');
         Route::delete('delete/{id}', [UserController::class, 'destroy'])->name('delete');
+        Route::get('role/{id}', [UserController::class, 'role'])->name('role');
     });
     Route::prefix('product')->name('product.')->group(function () {
         Route::get('list', [ProductController::class, 'index'])->name('list');
@@ -35,19 +38,41 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 });
 
-Route::get('/register', function(){
+Route::get('/', [AthController::class, 'index'])->name('/')->middleware('guest');
+Route::get('dang-ki', [AthController::class, 'dang_ki'])->name('dang-ki')->middleware('guest');
+Route::post('tai-khoan-moi', [AthController::class, 'add'])->name('tai-khoan-moi')->middleware('guest');
+Route::post('dang-nhap', [AthController::class, 'login'])->name('dang-nhap')->middleware('guest');
+Route::get('dang-xuat', [AthController::class, 'logout'])->name('dang-xuat')->middleware('auth');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/list', function(){
+Route::get('/list', function () {
     return view('list');
 });
 
-Route::get('/add', function(){
+Route::get('/add', function () {
     return view('add');
 });
 
-Route::get('/register-success', function(){
-    
+Route::get('/register-success', function () {
+
     return view('register-success');
 })->name('r-s');

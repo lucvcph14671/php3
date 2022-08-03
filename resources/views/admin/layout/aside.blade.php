@@ -15,7 +15,11 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        @if (Auth::check())
+                        <a href="#" class="d-block">{{Auth::user()->email}}</a>
+              
+            @endif
+                       
                     </div>
                 </div>
 
@@ -75,11 +79,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://127.0.0.1:8000/add/" class="nav-link">
+                            <a href="{{route('dang-xuat')}}" class="nav-link">
                                 <i class="nav-icon fas fa-bars"></i>
                                 <p>
-                                    product add
-                                    <span class="right badge badge-success">New</span>
+                                    Logout
+                                    
                                 </p>
                             </a>
                         </li>
